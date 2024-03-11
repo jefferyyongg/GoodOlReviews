@@ -1,3 +1,4 @@
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -5,6 +6,16 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 public class GameLoader {
+
+    public void addGame(String line){
+        try {
+            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt", true);
+            writer.append(" \n" + line);
+            writer.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     public ArrayList<String[]> loadGames(){
         return loadFile("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt");
     }

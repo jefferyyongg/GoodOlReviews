@@ -1,4 +1,5 @@
 Id, Gamenaam Gamegenre Prijs Kortingsprijs
-1 PacMan classic 10.99 9.99
+1 PacMan classic 10.99 10.99
 2 Mario classic 14.99 6.99
 3 Zelda classic 19.99 4.99
+4 SafaeZoektSchelpen Adventure 69.99 19.99

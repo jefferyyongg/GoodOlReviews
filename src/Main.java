@@ -1,35 +1,16 @@
+import java.text.DecimalFormat;
+import java.lang.Math;
 import java.util.*;
 
 class Pagina {
 
     public void loadPage(Scanner scanner){
-        System.out.println("Page contents");
+        System.out.println("Load page content with user input");
     }
 
     public void writeReview(Scanner scanner) {
         System.out.println("Writes review");
     }
-}
-
-
-class Lijst extends Pagina{
-    public void loadPage(Scanner scanner){
-        ReviewLoader reviewLoader = new ReviewLoader();
-        HashMap<Double, String> reviews = reviewLoader.loadReviews();
-        TreeMap<Double, String> tree = new TreeMap<>(Comparator.reverseOrder());
-        tree.putAll(reviews);
-
-        String line = "";
-
-        for(String s : tree.values()){
-            line += s + "\n";
-        }
-
-        System.out.println(line);
-    }
-}
-
-class Review extends Pagina {
 
     public String encodeReview(String review)
     {
@@ -51,6 +32,36 @@ class Review extends Pagina {
 
         return  decodedReview;
     }
+}
+
+
+class Lijst extends Pagina{
+    public void loadPage(Scanner scanner){
+        GameLoader gameLoader = new GameLoader();
+        ArrayList<String[]> games = gameLoader.loadGames();
+
+        ReviewLoader reviewLoader = new ReviewLoader();
+        HashMap<Double, String> reviews = reviewLoader.loadReviews();
+        TreeMap<Double, String> tree = new TreeMap<>(Comparator.reverseOrder());
+        tree.putAll(reviews);
+
+        String line = "";
+        int rank = 1;
+
+        for(String s : tree.values()){
+            for(String[] game : games){
+                if(game[1].equals(s)){
+                    line +=  rank  + ". " + s + " | Prijs: $" + game[3] + "\n";
+                }
+            }
+            rank++;
+        }
+
+        System.out.println(line);
+    }
+}
+
+class Review extends Pagina {
 
     public void loadPage (Scanner scanner){
         GameLoader gameLoader = new GameLoader();
@@ -78,7 +89,7 @@ class Review extends Pagina {
             storylineScore = scanner.nextInt();
             line += storylineScore + " ";
 
-            line += ((gameplayScore + graphicsScore + storylineScore) / 3 ) + " ";
+            line += ((gameplayScore + graphicsScore + storylineScore) / 3) + " ";
 
             String beschrijving;
             System.out.printf("Beschrijving: ");
@@ -101,6 +112,48 @@ class Review extends Pagina {
 
 class Uitverkoop extends Pagina {
 
+    public void loadPage(Scanner scanner){
+        GameLoader gameLoader = new GameLoader();
+        ArrayList<String[]> games = gameLoader.loadGames();
+        System.out.println("Lijst van afgeprijsde games: \n");
+        String originalText = "";
+        String strikethroughText = "\u001B[9m" + originalText + "\u001B[0m";
+        for(String[] game : games){
+            if(Double.valueOf(game[4]) < Double.valueOf(game[3])){
+                System.out.printf("Game: %s | Prijs: $%s > $%.2f%n", game[1], ("\u001B[9m" + game[3] + "\u001B[0m"), (Double.valueOf(game[3]) - Double.valueOf(game[4])));
+            }
+        }
+    }
+}
+
+class AddGame extends Pagina{
+    public void loadPage(Scanner scanner){
+        //gets rid of fake lineeee
+        scanner.nextLine();
+        System.out.println("Game Titel: ");
+        String titel = scanner.nextLine();
+        titel = this.encodeReview(titel);
+        System.out.println("Genre: ");
+        String genre = scanner.nextLine();
+        System.out.println("Prijs: ");
+        double prijs = Double.valueOf(scanner.nextLine());
+        System.out.println("Korting: ");
+        double korting = Double.valueOf(scanner.nextLine());
+
+        GameLoader gameLoader = new GameLoader();
+        ArrayList<String[]> games = gameLoader.loadGames();
+
+        String line = "";
+        line += games.size() + 1 + " ";
+        line += titel + " ";
+        line += genre + " ";
+        line += prijs + " ";
+        line += korting;
+
+        gameLoader.addGame(line);
+
+        System.out.println("Game Toegevoegd!");
+    }
 }
 
 class Menu {
@@ -112,13 +165,13 @@ class Menu {
     }
 
     public String showMenuKeuze(){
-        return "1: Zie ranglijst\n2: Vul review in\n3: Ga naar uitverkoop\nVul het nummer in waar u heen wilt navigeren:\n";
+        return "1: Zie ranglijst\n2: Vul review in\n3: Ga naar uitverkoop\n4: Game toevoegen\nVul het nummer in waar u heen wilt navigeren:\n";
     }
 
     public void handleMenuKeuze(Scanner scanner){
         int input = scanner.nextInt();
 
-        if(input > 0 && input <= 3){
+        if(input > 0 && input <= 4){
             Pagina pagina = paginas.get(input - 1);
             pagina.loadPage(scanner);
         } else {
@@ -135,6 +188,7 @@ public class Main {
         paginas.add(new Lijst());
         paginas.add(new Review());
         paginas.add(new Uitverkoop());
+        paginas.add(new AddGame());
 
         Menu menu = new Menu(paginas);
         System.out.println(menu.showMenuKeuze());
