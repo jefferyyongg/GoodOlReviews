@@ -1,0 +1,6 @@
+Id, Naam, Gameplay, Graphics, Storyline, Totaal, Toelichting
+3 Zelda 5 5 5 5 hou_hoi_hoi_hoi
+1 PacMan 8 8 8 8 yeet_yeet_yeet 
+3 Zelda 3 3 3 3  
+2 Mario 2 2 2 2 
+3 Zelda 5 6 7 6 ndjaidbahsi_haihdi_ashid_hsaijd_jias_hdsaijhd_ijas
