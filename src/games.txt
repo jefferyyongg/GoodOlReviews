@@ -1,5 +1,7 @@
 Id, Gamenaam Gamegenre Prijs Kortingsprijs
 1 PacMan classic 10.99 10.99
 2 Mario classic 14.99 6.99
-3 Zelda classic 19.99 4.99
-4 SafaeZoektSchelpen Adventure 69.99 19.99
+3 Zelda classic 19.99 4.99 
+4 Space_Invaders classic 19.99 4.99
+5 Star_Wars Sci-fi 59.99 0.0
+6 Pokemon Adventure 59.99 9.99

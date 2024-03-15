@@ -2,10 +2,12 @@ import java.text.DecimalFormat;
 import java.lang.Math;
 import java.util.*;
 
+//FIX HANDLE MENU KEUZE(ONLY SHOWS ITEMS WITH A REVIEW), (ONLY SHOWS THE MOST RECENT ADDED ITEM USING ADDGAME() <- METHOD)
+
 class Pagina {
 
     public void loadPage(Scanner scanner){
-        System.out.println("Load page content with user input");
+        System.out.println("Load page content");
     }
 
     public void writeReview(Scanner scanner) {
@@ -34,7 +36,7 @@ class Pagina {
     }
 }
 
-
+//LAAD ALLEEN GAMES MET REVIEWS DUS NIEUWE TOEGEVOEGDE GAMES WORDEN NIET GEDISPLAYED
 class Lijst extends Pagina{
     public void loadPage(Scanner scanner){
         GameLoader gameLoader = new GameLoader();
@@ -58,6 +60,7 @@ class Lijst extends Pagina{
         }
 
         System.out.println(line);
+
     }
 }
 
@@ -93,7 +96,7 @@ class Review extends Pagina {
 
             String beschrijving;
             System.out.printf("Beschrijving: ");
-            //gets rid of int Line
+            //verwijdered int line
             scanner.nextLine();
             beschrijving = scanner.nextLine();
 
@@ -116,11 +119,12 @@ class Uitverkoop extends Pagina {
         GameLoader gameLoader = new GameLoader();
         ArrayList<String[]> games = gameLoader.loadGames();
         System.out.println("Lijst van afgeprijsde games: \n");
-        String originalText = "";
-        String strikethroughText = "\u001B[9m" + originalText + "\u001B[0m";
         for(String[] game : games){
-            if(Double.valueOf(game[4]) < Double.valueOf(game[3])){
-                System.out.printf("Game: %s | Prijs: $%s > $%.2f%n", game[1], ("\u001B[9m" + game[3] + "\u001B[0m"), (Double.valueOf(game[3]) - Double.valueOf(game[4])));
+            if(Double.valueOf(game[4]) - Double.valueOf(game[3]) == 0.0){
+                System.out.printf("%s | Prijs: $%s > Free!%n", game[1], ("\u001B[9m" + game[3] + "\u001B[0m"));
+            }
+            else if(Double.valueOf(game[4]) < Double.valueOf(game[3]) && Double.valueOf(game[4]) != 0){
+                System.out.printf("%s | Prijs: $%s > $%.2f%n", game[1], ("\u001B[9m" + game[3] + "\u001B[0m"), (Double.valueOf(game[3]) - Double.valueOf(game[4])));
             }
         }
     }
