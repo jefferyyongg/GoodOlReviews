@@ -1,42 +1,39 @@
-import java.io.FileWriter;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
 public class GameLoader {
-
-    public void addGame(String line){
-        try {
-            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt", true);
-            writer.append(" \n" + line);
-            writer.close();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-    public ArrayList<String[]> loadGames(){
-        return loadFile("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt");
+    public ArrayList<String[]> loadGames()
+    {
+        //Games inladen (sorteeroptie / filteroptie later hier inbouwen)
+        return this.loadFile("/Users/jefferyyong/IdeaProjects/GoodOlGame/src/games.txt");
     }
 
-    public ArrayList<String[]> loadFile(String filePath){
-        String[] parts = new String[5];
+    public ArrayList<String[]> loadFile(String fileName)
+    {
+        String[] parts = new String[4];
         ArrayList<String[]> gameLines = new ArrayList<>();
+        try {
+            // Bestandspad openen en opslaan om later het bestand te openen
+            Path filePath = Paths.get(fileName);
 
-        try{
-            Path path = Paths.get(filePath);
+            //Bestand uitlezen
+            List<String> lines = Files.readAllLines(filePath);
 
-            List<String> lines = Files.readAllLines(path);
-
+            // Elke regel toevoegen aan de games-lijst. Eerste overslaan (header)
             String line;
-
-            for(int i = 1; i < lines.size(); i++){
-                parts = lines.get(i).split(" ");
+            for (int i = 1; i < lines.size(); i++) {
+                line = lines.get(i);
+                parts = line.split(" ");
 
                 gameLines.add(parts);
             }
-        } catch (IOException e){
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return gameLines;
