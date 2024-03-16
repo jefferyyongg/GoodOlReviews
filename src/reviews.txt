@@ -1,8 +1,0 @@
-Id, Naam, Gameplay, Graphics, Storyline, Totaal, Toelichting
-3 Zelda 5 5 5 5 hou_hoi_hoi_hoi
-1 PacMan 8 8 8 8 yeet_yeet_yeet 
-3 Zelda 3 3 3 3 Hele_coole_beschrijving
-2 Mario 2 2 2 2 Niet_zo_leuke_comment
-3 Zelda 5 6 7 6 swag_swag_swag 
-2 Mario 2 2 2 2 hoihhoi_hoi 
-6 Pokemon 10 10 10 10 fohpypypyp[y
