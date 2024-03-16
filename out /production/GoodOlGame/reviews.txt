@@ -1,6 +1,0 @@
-Id, Naam, Gameplay, Graphics, Storyline, Totaal, Beschrijving
-2 Mario 3 5 7 5 Beschrijving_hoihoihoih
-2 Mario 4 4 4 4 Beschrijving_hoihoihoih
-2 Mario 3 5 10 6 Beschrijving_hoihoihoih
-3 Zelda 3 5 10 6 Super_shit_game_man 
-2 Zelda 5 5 5 5.0 ik_hou_van_kaas

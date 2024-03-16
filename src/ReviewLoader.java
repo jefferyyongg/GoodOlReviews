@@ -1,4 +1,3 @@
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -6,50 +5,60 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+
 
 public class ReviewLoader {
-    public void writeReview(Review review){
-        try {
-            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGame/src/reviews.txt", true);
 
-            //KOALO OBJECT TERUG NAAR KK STRING CONVERTEN LMAOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-            String line = review.getId() + " " + review.getName() + " " + review.getGameplayScore() + " " + review.getGraphicsScore() + " " + review.getStorylineScore() + " " + review.getTotalScore() + " " + review.getTekstReview();
+    public void writeReview(String line){
+        try {
+            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/reviews.txt", true);
             writer.append(" \n" + line);
             writer.close();
         } catch (IOException e){
             e.printStackTrace();
         }
     }
-    public ArrayList<Review> loadReviews()
-    {
-        //Games inladen (sorteeroptie / filteroptie later hier inbouwen)
-        return this.loadFile("/Users/jefferyyong/IdeaProjects/GoodOlGame/src/reviews.txt");
+
+    public HashMap<Double, String> loadReviews(){
+        return loadFile("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/reviews.txt");
     }
 
-    public ArrayList<Review> loadFile(String fileName)
-    {
+    public HashMap<Double, String> loadFile(String filePath){
         String[] parts = new String[7];
-        ArrayList<Review> reviews = new ArrayList<>();
-        try {
-            // Bestandspad openen en opslaan om later het bestand te openen
-            Path filePath = Paths.get(fileName);
+        ArrayList<String[]> gameLines = new ArrayList<>();
 
-            //Bestand uitlezen
-            List<String> lines = Files.readAllLines(filePath);
 
-            // Elke regel toevoegen aan de games-lijst. Eerste overslaan (header)
+        try{
+            Path path = Paths.get(filePath);
+
+            List<String> lines = Files.readAllLines(path);
+
             String line;
-            for (int i = 1; i < lines.size(); i++) {
-                line = lines.get(i);
-                parts = line.split(" ");
 
-                Review review = new Review(Integer.valueOf(parts[0]), parts[1], Integer.valueOf(parts[2]), Integer.valueOf(parts[3]), Integer.valueOf(parts[4]), Double.valueOf(parts[5]), parts[6]);
-                reviews.add(review);
+            for(int i = 1; i < lines.size(); i++){
+                parts = lines.get(i).split(" ");
+
+                gameLines.add(parts);
             }
-
-        } catch (IOException e) {
+        } catch (IOException e){
             e.printStackTrace();
         }
-        return reviews;
+
+        GameLoader gameLoader = new GameLoader();
+        ArrayList<String[]> games = gameLoader.loadGames();
+        HashMap<Double, String> hash = new HashMap<>();
+
+        for(int i = 0; i < games.size(); i++){
+            double res = 0;
+            for(int j = 0; j < gameLines.size(); j++){
+                if(gameLines.get(j)[0].equals(games.get(i)[0])){
+                    res += Integer.valueOf(gameLines.get(j)[5]);
+                }
+            }
+            hash.put(res, games.get(i)[1]);
+        }
+
+        return hash;
     }
 }
