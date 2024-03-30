@@ -14,7 +14,7 @@ public class ReviewLoader {
 
             //KOALO OBJECT TERUG NAAR KK STRING CONVERTEN LMAOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
             String line = review.getId() + " " + review.getName() + " " + review.getGameplayScore() + " " + review.getGraphicsScore() + " " + review.getStorylineScore() + " " + review.getTotalScore() + " " + review.getTekstReview();
-            writer.append(" \n" + line);
+            writer.append(line + "\n");
             writer.close();
         } catch (IOException e){
             e.printStackTrace();

@@ -1,4 +1,5 @@
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,6 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameLoader {
+
+    public void writeGame(Game g){
+        try {
+            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt", true);
+
+            String line = (loadGames().size() + 1) + " " + g.getTitle() + " " + g.getGenre() + " " + g.getPrice() + " " + g.getDiscountPrice();
+            writer.append(line + "\n");
+            writer.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     public ArrayList<String[]> loadGames()
     {
         //Games inladen (sorteeroptie / filteroptie later hier inbouwen)

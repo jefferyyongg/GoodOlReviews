@@ -8,6 +8,14 @@ public class Game {
     private double price;
     private double discountPrice;
 
+    public Game(String title, String genre, double price, double discountPrice){
+        this.title = title;
+        this.genre = genre;
+        this.price = price;
+        this.discountPrice = discountPrice;
+        this.reviews = new ArrayList<>();
+    }
+
     public Game(int id, String title, String genre, double price, double discountPrice){
         this.id = id;
         this.title = title;

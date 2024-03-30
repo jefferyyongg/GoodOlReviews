@@ -117,7 +117,7 @@ class ReviewPage extends Page {
         for(String[] s : gamesList){
             System.out.println(s[0] + ". " + s[1]);
         }
-        int id = scanner.nextInt() - 1;
+        int id = scanner.nextInt();
 
 
         System.out.println("Gameplay Score: \n");
@@ -208,6 +208,44 @@ class UitverkoopPage extends Page {
     }
 }
 
+class AdminPage extends Page {
+    public void loadPage(Scanner scanner){
+        System.out.println("Enter Username:\n");
+        String user = scanner.nextLine();
+        System.out.println("Enter Password:\n");
+        String pass = scanner.nextLine();
+
+        GameLoader gameLoader = new GameLoader();
+
+        if(user.equals("Admin") && pass.equals("Admin")){
+            System.out.println("Admin Menu:\n1. Game Toevoegen\n2. Game Verwijderen\n3. Prijzen Aanpassen");
+            String adminKeuze = scanner.nextLine();
+            if(adminKeuze.equals("1")){
+                System.out.println("Game Title: \n");
+                String title = scanner.nextLine();
+                title = encodeReview(title);
+                System.out.println("Genre: \n");
+                String genre = scanner.nextLine();
+                System.out.println("Prijs: \n");
+                String prijs = scanner.nextLine();
+                System.out.println("Kortingsprijs: \n");
+                String korting = scanner.nextLine();
+                Game g = new Game(title, genre, Double.valueOf(prijs), Double.valueOf(korting));
+                gameLoader.writeGame(g);
+            } else if(adminKeuze.equals("2")){
+                //VERWIJDEREN VAN GAMES, MOET NOG GEIMPLEMENTEERD WORDEN
+            } else if(adminKeuze.equals("3")){
+                //AANPASSEN PRIJS VAN GESELECTEERDE GAME
+            }else {
+                System.out.println("Ongeldige login gegevens.");
+            }
+        } else {
+            System.out.println("Ongeldige login gegevens.");
+        }
+
+    }
+}
+
 public class AppMenu {
     private final Scanner scanner = new Scanner(System.in);
 
@@ -231,6 +269,8 @@ public class AppMenu {
                     uitverkoopPage.loadPage(scanner);
                     break;
                 case 4:
+                    AdminPage adminPage = new AdminPage();
+                    adminPage.loadPage(scanner);
                     break;
                 case 5:
                     System.out.println("Sluiten...");

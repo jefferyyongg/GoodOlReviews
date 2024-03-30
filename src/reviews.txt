@@ -4,9 +4,4 @@ Id, Naam, Gameplay, Graphics, Storyline, Totaal, Beschrijving
 2 Mario 4 4 4 4 Beschrijving_hoihoihoih
 2 Mario 3 5 10 6 Beschrijving_hoihoihoih
 3 Zelda 3 5 10 6 Super_shit_game_man 
-2 Zelda 5 5 5 5.0 ik_hou_van_kaas 
-0 PacMan 10 10 10 10.0 coole_game 
-2 Zelda 10 10 10 10.0 super_coole_game 
-0 PacMan 20 10 15 15.0 best_game_ever_bro 
-1 Mario 100 100 100 100.0 best_game 
-0 PacMan 10 10 10 10.0 nice_game_bro
+2 Zelda 5 5 5 5.0 ik_hou_van_kaas
