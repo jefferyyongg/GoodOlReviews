@@ -1,5 +1,7 @@
 import java.util.*;
 
+import static java.util.Map.entry;
+
 class Page{
     public void loadPage(Scanner scanner){
         System.out.println("Loads the current page");
@@ -144,6 +146,47 @@ class ReviewPage extends Page {
         //review object aan ReviewLoader geven
         ReviewLoader reviewLoader = new ReviewLoader();
         reviewLoader.writeReview(review);
+
+        //Enquete functionaliteit
+        //vragen of de gebruiker enquete wilt invullen
+        System.out.println("Enquête invullen?(y/n): \n");
+        String enqueteKeuze = scanner.nextLine();
+        //enquete vragen toevoegen met bijhorende antwoorden in een hashmap
+        HashMap<String, String[]> enqueteVragen = new HashMap<>();
+        enqueteVragen.put("Hoe vaak bezoekt u onze winkel (of website)?", new String[]{"Dagelijks", "Wekelijks", "Maandelijks"});
+        enqueteVragen.put("Welk type games koopt u meestal bij Good ol’ Games?", new String[]{"RPG", "Puzzel", "Strategie", "Avontuur", "Actie"});
+        enqueteVragen.put("Wat is voor u het belangrijkste criterium bij het kiezen van een retro-game?", new String[]{"Gameplay", "Graphics", "StoryLine", "Prijs", "Aanbevelingen/Ranglijst"});
+        enqueteVragen.put("Hoe waarschijnlijk is het dat u Good ol’ Games zou aanbevelen aan vrienden of familie?", new String[]{"Zeer onwaarschijnlijk", "Onwaarschijnlijk", "Neutraal", "Waarschijnlijk", "Zeer waarschijnlijk"});
+        enqueteVragen.put("Heeft u suggesties voor het verbeteren van onze winkel/website?", new String[]{"Open Vraag: \n"});
+        enqueteVragen.put("Hoe belangrijk is de prijs van een game bij uw beslissing om te kopen?", new String[]{"Zeer onbelangrijk", "Onbelangrijk", "Neutraal", "Belangrijk", "Zeer belangrijk"});
+        enqueteVragen.put("Hoe tevreden bent u over de algemene sfeer en ervaring van de Good ol’ Games winkel/website?", new String[]{"Zeer ontevreden", "Ontevreden", "Neutraal", "Tevreden", "Zeer tevreden"});
+
+        //hashmap om vragen met bijhorende antwoorden op te slaan
+        HashMap<String, String> enqueteAntwoorden = new HashMap<>();
+        //while loop om enquete vragen te stellen
+        while(true){
+            if(enqueteKeuze.equals("y")){
+                //door enquetevragen hashmap loopen en elke vraag met bijhorende antwoorden terug geven
+                for(String k : enqueteVragen.keySet()){
+                    System.out.println(k);
+                    for(String v : enqueteVragen.get(k)){
+                        System.out.println(v);
+                    }
+                    String input = scanner.nextLine();
+                    //vraag met user input opslaan in EnqueteAntwoorden
+                    enqueteAntwoorden.put(k, input);
+                }
+                //EnqueteAntwoorden doorgeven na de loop
+                EnqueteLoader enqueteLoader = new EnqueteLoader();
+                enqueteLoader.writeEnquete(enqueteAntwoorden);
+                System.out.println("Enquête Voltooid!");
+                break;
+            } else if (enqueteKeuze.equals("n")){
+                break;
+            } else {
+                System.out.println("Ongeldige Keuze");
+            }
+        }
 
     }
 
