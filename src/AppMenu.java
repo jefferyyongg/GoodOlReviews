@@ -215,8 +215,9 @@ class AdminPage extends Page {
         System.out.println("Enter Password:\n");
         String pass = scanner.nextLine();
 
+        //import gameloader voor functionaliteiten je snapt het wel
         GameLoader gameLoader = new GameLoader();
-
+        //dit snap je wel
         if(user.equals("Admin") && pass.equals("Admin")){
             System.out.println("Admin Menu:\n1. Game Toevoegen\n2. Prijzen Aanpassen");
             String adminKeuze = scanner.nextLine();
@@ -230,22 +231,30 @@ class AdminPage extends Page {
                 String prijs = scanner.nextLine();
                 System.out.println("Kortingsprijs: \n");
                 String korting = scanner.nextLine();
+                //user input pakken en in een nieuwe game object stoppen
                 Game g = new Game(title, genre, Double.valueOf(prijs), Double.valueOf(korting));
+                //die game object doorgeven aan gameloader object die het vervolgend append aan het games.txt text bestand
                 gameLoader.writeGame(g);
             } else if(adminKeuze.equals("2")){
+                //game list pakken uit gameloader
                 ArrayList<String[]> games = gameLoader.loadGames();
+                //user input pakken bla bla bla...
                 System.out.println("Welke game prijs wilt u aanpassen?:\n");
+                String input = scanner.nextLine();
+                //games showen plus ID(index) voor de user om te selecteren
                 for(String[] s : games){
                     System.out.printf("%s. %s Prijs: %s\n", s[0], s[1], s[3]);
                 }
-                String input = scanner.nextLine();
+                //user input voor nieuwe prijs zZzZzZzZzZz....
                 System.out.println("Nieuwe Prijs?: \n");
                 String newPriceInput = scanner.nextLine();
                 for(String[] s : games){
+                    //prijs veranderen in games lijst
                     if(s[0].equals(input)){
                         s[3] = newPriceInput;
                     }
                 }
+                //lijst doorgeven je weet het at this point wel doei 👋👋👋
                 gameLoader.setGamePrice(games);
             }else {
                 System.out.println("Ongeldige login gegevens.");

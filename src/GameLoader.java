@@ -11,6 +11,7 @@ public class GameLoader {
 
     public void setGamePrice(ArrayList<String[]> games){
         try {
+            //ipv append op false laten en het gehele text bestand herschrijven ipv appenden
             FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt");
 
             writer.append("Id Naam Genre Prijs Kortingsprijs\n");

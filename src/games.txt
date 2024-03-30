@@ -3,4 +3,3 @@ Id Naam Genre Prijs Kortingsprijs
 2 Mario classic 14.99 6.99
 3 Zelda classic 19.99 4.99
 4 Star_Wars actie 19.99 9.99
-5 Safae_stinkt actie 19.99 4.99
