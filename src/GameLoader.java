@@ -9,6 +9,28 @@ import java.util.List;
 
 public class GameLoader {
 
+    public void removeGame(ArrayList<String[]> games){
+        try {
+            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt");
+            writer.append("Id Naam Genre Prijs Kortingsprijs\n");
+
+            //alle games hun ID's refreshen zodat het weer gesorteerd is(zodat je geen problemen krijgt met het toevoegen van nieuwe games en dan twee dezelfde ID's krijgt)
+            for(int i = 0; i < games.size(); i++){
+                games.get(i)[0] = String.valueOf(i + 1);
+            }
+
+            //voeg nieuwe gerefreshde ID game lijst toe aan games.txt
+            for(String[] game : games){
+                String line = "";
+                line = game[0] + " " + game[1] + " " + game[2] + " " + game[3] + " " + game[4];
+                writer.append(line + "\n");
+            }
+            writer.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public void setGamePrice(ArrayList<String[]> games){
         try {
             //ipv append op false laten en het gehele text bestand herschrijven ipv appenden

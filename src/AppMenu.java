@@ -219,7 +219,7 @@ class AdminPage extends Page {
         GameLoader gameLoader = new GameLoader();
         //dit snap je wel
         if(user.equals("Admin") && pass.equals("Admin")){
-            System.out.println("Admin Menu:\n1. Game Toevoegen\n2. Prijzen Aanpassen");
+            System.out.println("Admin Menu:\n1. Game toevoegen\n2. Game verwijderen\n3. Prijzen aanpassen");
             String adminKeuze = scanner.nextLine();
             if(adminKeuze.equals("1")){
                 System.out.println("Game Title: \n");
@@ -236,6 +236,17 @@ class AdminPage extends Page {
                 //die game object doorgeven aan gameloader object die het vervolgend append aan het games.txt text bestand
                 gameLoader.writeGame(g);
             } else if(adminKeuze.equals("2")){
+                ArrayList<String[]> games = gameLoader.loadGames();
+                System.out.println("Welke game wilt u verwijderen?");
+                for(String[] s : games){
+                    System.out.printf("%s. %s\n", s[0], s[1]);
+                }
+                String verwijderInput = scanner.nextLine();
+                //verwijderd game met index de user input
+                games.remove(Integer.valueOf(verwijderInput) - 1);
+                //geeft games lijst door aan gameloader
+                gameLoader.removeGame(games);
+            } else if(adminKeuze.equals("3")){
                 //game list pakken uit gameloader
                 ArrayList<String[]> games = gameLoader.loadGames();
                 //user input pakken bla bla bla...
