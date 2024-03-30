@@ -5,3 +5,5 @@ Id, Naam, Gameplay, Graphics, Storyline, Totaal, Beschrijving
 2 Mario 3 5 10 6 Beschrijving_hoihoihoih
 3 Zelda 3 5 10 6 Super_shit_game_man 
 2 Zelda 5 5 5 5.0 ik_hou_van_kaas
+4 timos_een_hoe 20 20 20 20.0 hoihoi
+4 timos_een_hoe 20 20 20 20.0 super_coole_game_ever_supoer_dibqidbiqwbdiqwbdibqidbwqibi_69696969969696969696996969696969696969696969696969696969969696969696969966999699696969696996969696969696969969696996969

@@ -89,11 +89,11 @@ class RankedPage extends Page {
                         "┌────────────────────────────────────┐\n" +
                         "│ Review van [%s]             \n" +
                         "├────────────────────────────────────┤\n" +
-                        "│ Gameplay Score: [%d]/10            │\n" +
-                        "│ Graphics Score: [%d]/10            │\n" +
-                        "│ Storyline Score: [%d]/10           │\n" +
+                        "│ Gameplay Score:  [%d]/10             \n" +
+                        "│ Graphics Score:  [%d]/10             \n" +
+                        "│ Storyline Score: [%d]/10            \n" +
                         "│                                    │\n" +
-                        "│ Totale Score: [%.1f]/10 \n" +
+                        "│ Totale Score:    [%.1f]/10 \n" +
                         "├────────────────────────────────────┤\n" +
                         "│ Toelichting:                       │\n" +
                         "│ [%s]\n" +
@@ -141,7 +141,7 @@ class ReviewPage extends Page {
         //alle input in een Review object stoppen
         //koalo nu hebben we een review obect gemaakt van een String
         // maar nu moeten van het object weer terug naar een string dus we hadden het object eig kunnen overslaan
-        Review review = new Review(id, gamesList.get(id)[1], gameplayScore, graphicsScore, storylineScore, res, beschrijving);
+        Review review = new Review(id, gamesList.get(id - 1)[1], gameplayScore, graphicsScore, storylineScore, res, beschrijving);
 
         //review object aan ReviewLoader geven
         ReviewLoader reviewLoader = new ReviewLoader();
