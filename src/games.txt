@@ -2,3 +2,4 @@ Id Naam Genre Prijs Kortingsprijs
 1 PacMan classic 14.99 19.99
 2 Mario classic 14.99 6.99
 3 Zelda classic 19.99 4.99
+4 timos_een_hoe romance 69.99 19.99

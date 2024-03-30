@@ -209,7 +209,7 @@ class UitverkoopPage extends Page {
 }
 
 class AdminPage extends Page {
-    public void loadPage(Scanner scanner){
+    public void loadPage(Scanner scanner) {
         System.out.println("Enter Username:\n");
         String user = scanner.nextLine();
         System.out.println("Enter Password:\n");
@@ -218,10 +218,10 @@ class AdminPage extends Page {
         //import gameloader voor functionaliteiten je snapt het wel
         GameLoader gameLoader = new GameLoader();
         //dit snap je wel
-        if(user.equals("Admin") && pass.equals("Admin")){
+        if (user.equals("Admin") && pass.equals("Admin")) {
             System.out.println("Admin Menu:\n1. Game toevoegen\n2. Game verwijderen\n3. Prijzen aanpassen");
             String adminKeuze = scanner.nextLine();
-            if(adminKeuze.equals("1")){
+            if (adminKeuze.equals("1")) {
                 System.out.println("Game Title: \n");
                 String title = scanner.nextLine();
                 title = encodeReview(title);
@@ -235,10 +235,10 @@ class AdminPage extends Page {
                 Game g = new Game(title, genre, Double.valueOf(prijs), Double.valueOf(korting));
                 //die game object doorgeven aan gameloader object die het vervolgend append aan het games.txt text bestand
                 gameLoader.writeGame(g);
-            } else if(adminKeuze.equals("2")){
+            } else if (adminKeuze.equals("2")) {
                 ArrayList<String[]> games = gameLoader.loadGames();
                 System.out.println("Welke game wilt u verwijderen?");
-                for(String[] s : games){
+                for (String[] s : games) {
                     System.out.printf("%s. %s\n", s[0], s[1]);
                 }
                 String verwijderInput = scanner.nextLine();
@@ -246,34 +246,33 @@ class AdminPage extends Page {
                 games.remove(Integer.valueOf(verwijderInput) - 1);
                 //geeft games lijst door aan gameloader
                 gameLoader.removeGame(games);
-            } else if(adminKeuze.equals("3")){
+            } else if (adminKeuze.equals("3")) {
                 //game list pakken uit gameloader
                 ArrayList<String[]> games = gameLoader.loadGames();
-                //user input pakken bla bla bla...
                 System.out.println("Welke game prijs wilt u aanpassen?:\n");
-                String input = scanner.nextLine();
                 //games showen plus ID(index) voor de user om te selecteren
-                for(String[] s : games){
+                for (String[] s : games) {
                     System.out.printf("%s. %s Prijs: %s\n", s[0], s[1], s[3]);
                 }
+                //user input pakken bla bla bla...
+                String input = scanner.nextLine();
                 //user input voor nieuwe prijs zZzZzZzZzZz....
                 System.out.println("Nieuwe Prijs?: \n");
                 String newPriceInput = scanner.nextLine();
-                for(String[] s : games){
+                for (String[] s : games) {
                     //prijs veranderen in games lijst
-                    if(s[0].equals(input)){
+                    if (s[0].equals(input)) {
                         s[3] = newPriceInput;
                     }
                 }
                 //lijst doorgeven je weet het at this point wel doei 👋👋👋
                 gameLoader.setGamePrice(games);
-            }else {
+            } else {
                 System.out.println("Ongeldige login gegevens.");
             }
         } else {
             System.out.println("Ongeldige login gegevens.");
         }
-
     }
 }
 
