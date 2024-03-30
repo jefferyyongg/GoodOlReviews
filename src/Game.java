@@ -16,6 +16,14 @@ public class Game {
         this.discountPrice = discountPrice;
         this.reviews = new ArrayList<>();
     }
+    public double getTotalGameScore() {
+        double t = 0.0;
+        for(Review r : reviews){
+            t += r.getTotalScore();
+        }
+        return t;
+    }
+
     public void addReview(Review review){
         reviews.add(review);
     }

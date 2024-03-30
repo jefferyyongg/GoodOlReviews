@@ -1,7 +1,9 @@
 Id, Naam, Gameplay, Graphics, Storyline, Totaal, Beschrijving
+1 PacMan 20 20 20 20 super_cool
 2 Mario 7 5 7 5 Beschrijving_hoihoihoih
 2 Mario 4 4 4 4 Beschrijving_hoihoihoih
 2 Mario 3 5 10 6 Beschrijving_hoihoihoih
 3 Zelda 3 5 10 6 Super_shit_game_man 
 2 Zelda 5 5 5 5.0 ik_hou_van_kaas 
-2 Zelda 10 10 10 10.0 ik_hou_van_poep_seks
+2 Zelda 10 10 10 10.0 ik_hou_van_poep_seks 
+1 Mario 50 50 50 50.0 echt_de_beste_game

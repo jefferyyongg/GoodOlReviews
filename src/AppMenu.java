@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 class Page{
     public void loadPage(Scanner scanner){
@@ -43,6 +41,7 @@ class RankedPage extends Page {
         //maak een nieuwe arraylist die alleen GAME OBJECTEN mag innemen
         ArrayList<Game> rankedList = new ArrayList<>();
 
+        //voegt alle reviews toe aan de juiste assigned game
         for(String[] s : gamesList){
             //gameList array uitlezen als string en overzetten naar Game Object
             Game game = new Game(Integer.valueOf(s[0]), s[1], s[2], Double.valueOf(s[3]), Double.valueOf(s[4]));
@@ -58,11 +57,16 @@ class RankedPage extends Page {
             rankedList.add(game);
         }
 
-        //Print alleen de games uit en filtert nog niet op totale score (FIX THIS ho)
+        //uhhh weet niet precies hoe dit werkt maar het sort de arraylist op basis van een object Field, in dit geval TotalGameScore(https://www.bezkoder.com/java-sort-arraylist-of-objects/)
+        Collections.sort(rankedList, Comparator.comparing(Game::getTotalGameScore));
+        //sorteert op laagste boven dus hier reverse ik de list
+        Collections.reverse(rankedList);
 
+        //loops door filtered list en doet wat simple system.out.printf's
         for(Game g : rankedList){
-            System.out.printf("ID: %d\nTitle: %s\nGenre: %s\nPrice: %.2f\nDiscount: %.2f\n", g.getId(), g.getTitle(), g.getGenre(), g.getPrice(), g.getDiscountPrice());
+            System.out.printf("ID: %d\nTitle: %s\nGenre: %s\nTotal Score: %.2f\nPrice: %.2f\nDiscount: %.2f\n", g.getId(), g.getTitle(), g.getGenre(), g.getTotalGameScore(), g.getPrice(), g.getDiscountPrice());
             System.out.println();
+            //print "no reviews available" als er geen reviews zijn gevonden
             if(g.getReviews().size() == 0){
                 System.out.printf(
                         "┌────────────────────────────────────┐\n" +

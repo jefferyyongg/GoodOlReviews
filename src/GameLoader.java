@@ -10,7 +10,7 @@ public class GameLoader {
     public ArrayList<String[]> loadGames()
     {
         //Games inladen (sorteeroptie / filteroptie later hier inbouwen)
-        return this.loadFile("C:\\Users\\Gebruiker\\Documents\\School\\intelJ projects\\GoodOlGame\\src\\games.txt");
+        return this.loadFile("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt");
     }
 
     public ArrayList<String[]> loadFile(String fileName)
