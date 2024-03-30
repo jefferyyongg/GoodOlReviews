@@ -9,6 +9,22 @@ import java.util.List;
 
 public class GameLoader {
 
+    public void setGamePrice(ArrayList<String[]> games){
+        try {
+            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt");
+
+            writer.append("Id Naam Genre Prijs Kortingsprijs\n");
+            for(String[] s : games){
+                String line = "";
+                line = s[0] + " " + s[1] + " " + s[2] + " " + s[3] + " " + s[4];
+                writer.append(line + "\n");
+            }
+            writer.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public void writeGame(Game g){
         try {
             FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt", true);

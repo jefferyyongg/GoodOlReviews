@@ -218,7 +218,7 @@ class AdminPage extends Page {
         GameLoader gameLoader = new GameLoader();
 
         if(user.equals("Admin") && pass.equals("Admin")){
-            System.out.println("Admin Menu:\n1. Game Toevoegen\n2. Game Verwijderen\n3. Prijzen Aanpassen");
+            System.out.println("Admin Menu:\n1. Game Toevoegen\n2. Prijzen Aanpassen");
             String adminKeuze = scanner.nextLine();
             if(adminKeuze.equals("1")){
                 System.out.println("Game Title: \n");
@@ -233,9 +233,20 @@ class AdminPage extends Page {
                 Game g = new Game(title, genre, Double.valueOf(prijs), Double.valueOf(korting));
                 gameLoader.writeGame(g);
             } else if(adminKeuze.equals("2")){
-                //VERWIJDEREN VAN GAMES, MOET NOG GEIMPLEMENTEERD WORDEN
-            } else if(adminKeuze.equals("3")){
-                //AANPASSEN PRIJS VAN GESELECTEERDE GAME
+                ArrayList<String[]> games = gameLoader.loadGames();
+                System.out.println("Welke game prijs wilt u aanpassen?:\n");
+                for(String[] s : games){
+                    System.out.printf("%s. %s Prijs: %s\n", s[0], s[1], s[3]);
+                }
+                String input = scanner.nextLine();
+                System.out.println("Nieuwe Prijs?: \n");
+                String newPriceInput = scanner.nextLine();
+                for(String[] s : games){
+                    if(s[0].equals(input)){
+                        s[3] = newPriceInput;
+                    }
+                }
+                gameLoader.setGamePrice(games);
             }else {
                 System.out.println("Ongeldige login gegevens.");
             }
