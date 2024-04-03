@@ -9,9 +9,11 @@ import java.util.List;
 
 public class ReviewLoader {
 
+    private String reviewsFile = "reviews.txt";
+
     public void deleteReview(ArrayList<Review> reviews){
         try{
-            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlReviews/src/reviews.txt");
+            FileWriter writer = new FileWriter(reviewsFile);
             writer.append("Id, Naam, Gameplay, Graphics, Storyline, Totaal, Beschrijving\n");
 
             for(Review r : reviews){
@@ -25,7 +27,7 @@ public class ReviewLoader {
     }
     public void writeReview(Review review){
         try {
-            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlReviews/src/reviews.txt", true);
+            FileWriter writer = new FileWriter(reviewsFile, true);
 
             //KOALO OBJECT TERUG NAAR KK STRING CONVERTEN LMAOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
             String line = review.getId() + " " + review.getName() + " " + review.getGameplayScore() + " " + review.getGraphicsScore() + " " + review.getStorylineScore() + " " + review.getTotalScore() + " " + review.getTekstReview();
@@ -39,7 +41,7 @@ public class ReviewLoader {
     public ArrayList<Review> loadReviews()
     {
         //Games inladen (sorteeroptie / filteroptie later hier inbouwen)
-        return this.loadFile("/Users/jefferyyong/IdeaProjects/GoodOlReviews/src/reviews.txt");
+        return this.loadFile(reviewsFile);
     }
 
     public ArrayList<Review> loadFile(String fileName)
