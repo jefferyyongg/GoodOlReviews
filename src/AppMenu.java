@@ -217,7 +217,7 @@ class AdminPage extends Page {
 
         //import gameloader voor functionaliteiten je snapt het wel
         GameLoader gameLoader = new GameLoader();
-        //dit snap je wel
+
         if (user.equals("Admin") && pass.equals("Admin")) {
             System.out.println("Admin Menu:\n1. Game toevoegen\n2. Game verwijderen\n3. Prijzen aanpassen");
             String adminKeuze = scanner.nextLine();
@@ -242,10 +242,26 @@ class AdminPage extends Page {
                     System.out.printf("%s. %s\n", s[0], s[1]);
                 }
                 String verwijderInput = scanner.nextLine();
+                String rmGame = games.get(Integer.valueOf(verwijderInput) - 1)[1];
+
+                //verwijderen van reviews van geslecteerde game
+                ReviewLoader reviewLoader = new ReviewLoader();
+                ArrayList<Review> reviews = reviewLoader.loadReviews();
+                ArrayList<Review> newReviews = new ArrayList<>();
+
+                for(int i = 0; i < reviews.size(); i++){
+                    if(!reviews.get(i).getName().equals(rmGame)){
+                        newReviews.add(reviews.get(i));
+                    }
+                }
+
+                reviewLoader.deleteReview(newReviews);
+
                 //verwijderd game met index de user input
                 games.remove(Integer.valueOf(verwijderInput) - 1);
                 //geeft games lijst door aan gameloader
                 gameLoader.removeGame(games);
+
             } else if (adminKeuze.equals("3")) {
                 //game list pakken uit gameloader
                 ArrayList<String[]> games = gameLoader.loadGames();
@@ -259,10 +275,13 @@ class AdminPage extends Page {
                 //user input voor nieuwe prijs zZzZzZzZzZz....
                 System.out.println("Nieuwe Prijs?: \n");
                 String newPriceInput = scanner.nextLine();
+                System.out.println("Nieuwe Kortings Prijs?: \n");
+                String newKortingInput = scanner.nextLine();
                 for (String[] s : games) {
                     //prijs veranderen in games lijst
                     if (s[0].equals(input)) {
                         s[3] = newPriceInput;
+                        s[4] = newKortingInput;
                     }
                 }
                 //lijst doorgeven je weet het at this point wel doei 👋👋👋
@@ -282,27 +301,26 @@ public class AppMenu {
     public void run() {
         while (true) {
             displayMenu();
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            String choice = scanner.nextLine();
 
             switch (choice) {
-                case 1:
+                case "1":
                     RankedPage rankedPage = new RankedPage();
                     rankedPage.loadPage(scanner);
                     break;
-                case 2:
+                case "2":
                     ReviewPage reviewPage = new ReviewPage();
                     reviewPage.loadPage(scanner);
                     break;
-                case 3:
+                case "3":
                     UitverkoopPage uitverkoopPage = new UitverkoopPage();
                     uitverkoopPage.loadPage(scanner);
                     break;
-                case 4:
+                case "4":
                     AdminPage adminPage = new AdminPage();
                     adminPage.loadPage(scanner);
                     break;
-                case 5:
+                case "5":
                     System.out.println("Sluiten...");
                     return;
                 default:

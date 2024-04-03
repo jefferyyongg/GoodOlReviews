@@ -8,9 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewLoader {
+
+    public void deleteReview(ArrayList<Review> reviews){
+        try{
+            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlReviews/src/reviews.txt");
+            writer.append("Id, Naam, Gameplay, Graphics, Storyline, Totaal, Beschrijving\n");
+
+            for(Review r : reviews){
+                writer.append(r.getId() + " " + r.getName() + " " + r.getGameplayScore() + " " + r.getGraphicsScore() + " " + r.getStorylineScore() + " " + r.getTotalScore() + " " + r.getTekstReview() + "\n");
+            }
+
+            writer.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     public void writeReview(Review review){
         try {
-            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/reviews.txt", true);
+            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlReviews/src/reviews.txt", true);
 
             //KOALO OBJECT TERUG NAAR KK STRING CONVERTEN LMAOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
             String line = review.getId() + " " + review.getName() + " " + review.getGameplayScore() + " " + review.getGraphicsScore() + " " + review.getStorylineScore() + " " + review.getTotalScore() + " " + review.getTekstReview();
@@ -20,10 +35,11 @@ public class ReviewLoader {
             e.printStackTrace();
         }
     }
+
     public ArrayList<Review> loadReviews()
     {
         //Games inladen (sorteeroptie / filteroptie later hier inbouwen)
-        return this.loadFile("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/reviews.txt");
+        return this.loadFile("/Users/jefferyyong/IdeaProjects/GoodOlReviews/src/reviews.txt");
     }
 
     public ArrayList<Review> loadFile(String fileName)

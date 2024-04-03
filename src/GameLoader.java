@@ -11,7 +11,7 @@ public class GameLoader {
 
     public void removeGame(ArrayList<String[]> games){
         try {
-            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt");
+            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlReviews/src/games.txt");
             writer.append("Id Naam Genre Prijs Kortingsprijs\n");
 
             //alle games hun ID's refreshen zodat het weer gesorteerd is(zodat je geen problemen krijgt met het toevoegen van nieuwe games en dan twee dezelfde ID's krijgt)
@@ -34,7 +34,7 @@ public class GameLoader {
     public void setGamePrice(ArrayList<String[]> games){
         try {
             //ipv append op false laten en het gehele text bestand herschrijven ipv appenden
-            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt");
+            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlReviews/src/games.txt");
 
             writer.append("Id Naam Genre Prijs Kortingsprijs\n");
             for(String[] s : games){
@@ -50,7 +50,7 @@ public class GameLoader {
 
     public void writeGame(Game g){
         try {
-            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt", true);
+            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlReviews/src/games.txt", true);
 
             String line = (loadGames().size() + 1) + " " + g.getTitle() + " " + g.getGenre() + " " + g.getPrice() + " " + g.getDiscountPrice();
             writer.append(line + "\n");
@@ -62,7 +62,7 @@ public class GameLoader {
     public ArrayList<String[]> loadGames()
     {
         //Games inladen (sorteeroptie / filteroptie later hier inbouwen)
-        return this.loadFile("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/games.txt");
+        return this.loadFile("/Users/jefferyyong/IdeaProjects/GoodOlReviews/src/games.txt");
     }
 
     public ArrayList<String[]> loadFile(String fileName)

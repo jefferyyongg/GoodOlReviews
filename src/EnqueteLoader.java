@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class EnqueteLoader {
     public void writeEnquete(HashMap<String, String> h){
         try {
-            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlGames/src/enquete.txt", true);
+            FileWriter writer = new FileWriter("/Users/jefferyyong/IdeaProjects/GoodOlReviews/src/enquete.txt", true);
             for(String k : h.keySet()){
                 writer.append(k + "\nAntwoord: " + h.get(k) + "\n");
             }
