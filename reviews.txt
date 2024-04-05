@@ -1,4 +1,3 @@
 Id, Naam, Gameplay, Graphics, Storyline, Totaal, Beschrijving
-1 PacMan 20 20 20 20.0 super_cool
 3 Zelda 3 5 10 6.0 Super_dog_game_man
 2 Zelda 5 5 5 5.0 ik_hou_van_kaas

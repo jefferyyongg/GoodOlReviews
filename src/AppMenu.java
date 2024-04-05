@@ -59,13 +59,44 @@ class RankedPage extends Page {
             rankedList.add(game);
         }
 
-        //uhhh weet niet precies hoe dit werkt maar het sort de arraylist op basis van een object Field, in dit geval TotalGameScore(https://www.bezkoder.com/java-sort-arraylist-of-objects/)
-        Collections.sort(rankedList, Comparator.comparing(Game::getTotalGameScore));
-        //sorteert op laagste boven dus hier reverse ik de list
-        Collections.reverse(rankedList);
+        //FILTER FUNCTIE (COEN PLS NIET NAAR MIJN SPAGHETTI-CODE KIJKEN TY)
+        Set<String> genreList = new HashSet<String>();
+        ArrayList<String> genre = new ArrayList<>();
+        for(Game game : rankedList){
+            genreList.add(game.getGenre());
+        }
+        for(String s : genreList){
+            genre.add(s);
+        }
+
+        int count = 2;
+        System.out.println("Filter by genre: \n1. None");
+        for(String s : genre){
+            System.out.println(count + ". " + s);
+            count++;
+        }
+
+        String genreInput = scanner.nextLine();
+        ArrayList<Game> games = new ArrayList<>();
+        if(genreInput.equals("1")){
+            //uhhh weet niet precies hoe dit werkt maar het sort de arraylist op basis van een object Field, in dit geval TotalGameScore(https://www.bezkoder.com/java-sort-arraylist-of-objects/)
+            Collections.sort(rankedList, Comparator.comparing(Game::getTotalGameScore));
+            //sorteert op laagste boven dus hier reverse ik de list
+            Collections.reverse(rankedList);
+            games = rankedList;
+        } else if(Integer.valueOf(genreInput) - 2 < genre.size()) {
+            String genreKeuze = genre.get(Integer.valueOf(genreInput) - 2);
+            for(int i = 0; i < rankedList.size(); i++){
+                if(rankedList.get(i).getGenre().equals(genreKeuze)){
+                    games.add(rankedList.get(i));
+                }
+            }
+        } else {
+            System.out.println("Ongeldige Invoer");
+        }
 
         //loops door filtered list en doet wat simple system.out.printf's
-        for(Game g : rankedList){
+        for(Game g : games){
             System.out.printf("ID: %d\nTitle: %s\nGenre: %s\nTotal Score: %.2f\nPrice: %.2f\nDiscount: %.2f\n", g.getId(), g.getTitle(), g.getGenre(), g.getTotalGameScore(), g.getPrice(), g.getDiscountPrice());
             System.out.println();
             //print "no reviews available" als er geen reviews zijn gevonden
