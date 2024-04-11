@@ -217,11 +217,15 @@ class ReviewPage extends Page {
                     // Vraag heeft een afhankelijkheid, checken of ie aan de voorwaarden voldoet.
                     if(dependency.containsKey(index))
                     {
-                        System.out.println("Afhankelijkheid");
                         String[] dep_answers = dependency.get(index);
                         int dep_question = Integer.parseInt(dep_answers[0]);
                         Object dep_key = enqueteVragen.keySet().toArray()[dep_question];
-                        boolean contains = Arrays.asList(dep_answers).contains(enqueteAntwoorden.get(dep_key));
+                        List<String> list = new java.util.ArrayList<>(Arrays.asList(dep_answers));
+                        list.remove(0); // Removes the first element
+                        // Convert back to array if needed
+                        String[] dep_answers_new = list.toArray(new String[0]);
+                        boolean contains = Arrays.asList(dep_answers_new).contains(enqueteAntwoorden.get(dep_key));
+
                         if(!contains)
                         {
                             index++;

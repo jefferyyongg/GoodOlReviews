@@ -1,3 +1,7 @@
 Id, Naam, Gameplay, Graphics, Storyline, Totaal, Beschrijving
 3 Zelda 3 5 10 6.0 Super_dog_game_man
 2 Zelda 5 5 5 5.0 ik_hou_van_kaas
+2 Zelda 2 2 2 2.0 2
+2 Zelda 2 2 2 2.0 2
+2 Zelda 2 2 2 2.0 2
+2 Zelda 2 2 2 2.0 2
