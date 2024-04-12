@@ -5,11 +5,13 @@ import java.util.HashMap;
 public class EnqueteLoader {
 
     private String enqueteFile = "enquete.txt";
-    public void writeEnquete(HashMap<String, String> h){
+    public void writeEnquete(Enquete enquete){
         try {
             FileWriter writer = new FileWriter(enqueteFile, true);
-            for(String k : h.keySet()){
-                writer.append(k + "\nAntwoord: " + h.get(k) + "\n");
+            for(EnqueteVraag ev : enquete.getVragen()){
+                if(ev.getAntwoordGegeven() != null) {
+                    writer.append(ev.getVraag() + " : " + ev.formatAntwoordGegeven() + "\n");
+                }
             }
             writer.append("\n");
             writer.close();

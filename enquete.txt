@@ -1,45 +1,8 @@
-Hoe waarschijnlijk is het dat u Good ol’ Games zou aanbevelen aan vrienden of familie?
-Antwoord: Neutraal
-Heeft u suggesties voor het verbeteren van onze winkel/website?
-Antwoord: meer functionaliteit
-Wat is voor u het belangrijkste criterium bij het kiezen van een retro-game?
-Antwoord: Prijs
-Hoe tevreden bent u over de algemene sfeer en ervaring van de Good ol’ Games winkel/website?
-Antwoord: Tevreden
-Welk type games koopt u meestal bij Good ol’ Games?
-Antwoord: Avontuur
-Hoe vaak bezoekt u onze winkel (of website)?
-Antwoord: Maandelijks
-Hoe belangrijk is de prijs van een game bij uw beslissing om te kopen?
-Antwoord: Zeer onbelangrijk
-
-Hoe waarschijnlijk is het dat u Good ol’ Games zou aanbevelen aan vrienden of familie?
-Antwoord: Neutraal
-Heeft u suggesties voor het verbeteren van onze winkel/website?
-Antwoord: Geen suggesties
-Wat is voor u het belangrijkste criterium bij het kiezen van een retro-game?
-Antwoord: Prijs
-Hoe tevreden bent u over de algemene sfeer en ervaring van de Good ol’ Games winkel/website?
-Antwoord: Neutraal
-Welk type games koopt u meestal bij Good ol’ Games?
-Antwoord: Actie
-Hoe vaak bezoekt u onze winkel (of website)?
-Antwoord: Maandelijks
-Hoe belangrijk is de prijs van een game bij uw beslissing om te kopen?
-Antwoord: Neutraal
-
-Hoe waarschijnlijk is het dat u Good ol’ Games zou aanbevelen aan vrienden of familie?
-Antwoord: Neutraal
-Heeft u suggesties voor het verbeteren van onze winkel/website?
-Antwoord: Geen suggesties
-Wat is voor u het belangrijkste criterium bij het kiezen van een retro-game?
-Antwoord: Graphics
-Hoe tevreden bent u over de algemene sfeer en ervaring van de Good ol’ Games winkel/website?
-Antwoord: Zeer tevreden
-Welk type games koopt u meestal bij Good ol’ Games?
-Antwoord: Avontuur
-Hoe vaak bezoekt u onze winkel (of website)?
-Antwoord: Maandelijks
-Hoe belangrijk is de prijs van een game bij uw beslissing om te kopen?
-Antwoord: Belangrijk
+Hoe vaak bezoekt u onze winkel (of website)? : Wekelijks
+Heeft u suggesties voor het verbeteren van onze winkel/website? : hoihoihoi
+Welk type games koopt u meestal bij Good ol’ Games? : RPG
+Wat is voor u het belangrijkste criterium bij het kiezen van een retro-game? : StoryLine
+Hoe belangrijk is de prijs van een game bij uw beslissing om te kopen? : Zeer belangrijk
+Hoe waarschijnlijk is het dat u Good ol’ Games zou aanbevelen aan vrienden of familie? : Zeer onwaarschijnlijk
+Hoe tevreden bent u over de algemene sfeer en ervaring van de Good ol’ Games winkel/website? : Neutraal
 

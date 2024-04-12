@@ -1,7 +1,5 @@
 import java.util.*;
 
-import static java.util.Map.entry;
-
 class Page{
     public void loadPage(Scanner scanner){
         System.out.println("Loads the current page");
@@ -179,82 +177,13 @@ class ReviewPage extends Page {
         //vragen of de gebruiker enquete wilt invullen
         System.out.println("Enquête invullen?(y/n): \n");
         String enqueteKeuze = scanner.nextLine();
-        //enquete vragen toevoegen met bijhorende antwoorden in een hashmap
-        LinkedHashMap<String, String[]> enqueteVragen = new LinkedHashMap<String, String[]>();
 
-        enqueteVragen.put("Hoe vaak bezoekt u onze winkel (of website)?",
-                new String[]{"Dagelijks", "Wekelijks", "Maandelijks"});
-        enqueteVragen.put("Heeft u suggesties voor het verbeteren van onze winkel/website?",
-                new String[]{"Open Vraag: \n"});
-
-        enqueteVragen.put("Welk type games koopt u meestal bij Good ol’ Games?",
-                new String[]{"RPG", "Puzzel", "Strategie", "Avontuur", "Actie"});
-        enqueteVragen.put("Wat is voor u het belangrijkste criterium bij het kiezen van een retro-game?",
-                new String[]{"Gameplay", "Graphics", "StoryLine", "Prijs", "Aanbevelingen/Ranglijst"});
-        enqueteVragen.put("Hoe belangrijk is de prijs van een game bij uw beslissing om te kopen?",
-                new String[]{"Zeer onbelangrijk", "Onbelangrijk", "Neutraal", "Belangrijk", "Zeer belangrijk"});
-
-
-        enqueteVragen.put("Hoe waarschijnlijk is het dat u Good ol’ Games zou aanbevelen aan vrienden of familie?",
-                new String[]{"Zeer onwaarschijnlijk", "Onwaarschijnlijk", "Neutraal", "Waarschijnlijk", "Zeer waarschijnlijk"});
-        enqueteVragen.put("Hoe tevreden bent u over de algemene sfeer en ervaring van de Good ol’ Games winkel/website?",
-                new String[]{"Zeer ontevreden", "Ontevreden", "Neutraal", "Tevreden", "Zeer tevreden"});
-
-        HashMap<Integer, String[]> dependency = new HashMap<Integer, String[]>();
-        dependency.put(1, new String[]{"0", "Dagelijks", "Wekelijks"});
-        dependency.put(3, new String[]{"2", "RPG", "Puzzel", "Strategie", "Avontuur", "Actie"});
-        dependency.put(4, new String[]{"3", "Gameplay", "Graphics", "StoryLine", "Prijs", "Aanbevelingen/Ranglijst"});
-
-
-        //hashmap om vragen met bijhorende antwoorden op te slaan
-        HashMap<String, String> enqueteAntwoorden = new HashMap<>();
-        //while loop om enquete vragen te stellen
-        while(true){
-            if(enqueteKeuze.equals("y")){
-                int index = 0;
-                //door enquetevragen hashmap lopen en elke vraag met bijhorende antwoorden terug geven
-                for(String k : enqueteVragen.keySet()){
-                    // Vraag heeft een afhankelijkheid, checken of ie aan de voorwaarden voldoet.
-                    if(dependency.containsKey(index))
-                    {
-                        String[] dep_answers = dependency.get(index);
-                        int dep_question = Integer.parseInt(dep_answers[0]);
-                        Object dep_key = enqueteVragen.keySet().toArray()[dep_question];
-                        List<String> list = new java.util.ArrayList<>(Arrays.asList(dep_answers));
-                        list.remove(0); // Removes the first element
-                        // Convert back to array if needed
-                        String[] dep_answers_new = list.toArray(new String[0]);
-                        boolean contains = Arrays.asList(dep_answers_new).contains(enqueteAntwoorden.get(dep_key));
-
-                        if(!contains)
-                        {
-                            index++;
-                            continue;
-                        }
-                    }
-
-                    System.out.println(k);
-                    for(String v : enqueteVragen.get(k)){
-
-                        System.out.println(v);
-                    }
-                    String input = scanner.nextLine();
-                    //vraag met user input opslaan in EnqueteAntwoorden
-                    enqueteAntwoorden.put(k, input);
-                    index++;
-                }
-                //EnqueteAntwoorden doorgeven na de loop
-                EnqueteLoader enqueteLoader = new EnqueteLoader();
-                enqueteLoader.writeEnquete(enqueteAntwoorden);
-                break;
-            } else if (enqueteKeuze.equals("n")){
-                break;
-            } else {
-                System.out.println("Ongeldige Keuze");
-                break;
-            }
+        if(enqueteKeuze.equals("y"))
+        {
+            Enquete enquete = new Enquete();
+            enquete.loadVragen();
+            enquete.stelVragen();
         }
-
     }
 
 }
