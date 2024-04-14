@@ -26,7 +26,7 @@ public class EnqueteTest {
         setUp();
         enquete.loadVragen();
         EnqueteVraag vraag = enquete.getVragen().get(0);
-        assertTrue(enquete.checkForDependency(vraag));
+        assertTrue(enquete.checkForDependency(vraag), "Moet true teruggeven als het vraag zonder dependency is.");
     }
 
     @Test
@@ -34,8 +34,8 @@ public class EnqueteTest {
         setUp();
         enquete.loadVragen();
         EnqueteVraag vraagMetDep = enquete.getVragen().get(1);
-        enquete.getVragen().get(0).setAntwoordGegeven("Dagelijks");
-        assertTrue(enquete.checkForDependency(vraagMetDep));
+        enquete.getVragen().get(0).setAntwoordGegeven(String.valueOf(1));
+        assertTrue(enquete.checkForDependency(vraagMetDep),"Moet True teruggeven als het antwoord Dagelijks is, dus voldoet aan de dependency");
     }
 
 }
